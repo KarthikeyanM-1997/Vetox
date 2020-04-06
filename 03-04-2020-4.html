@@ -1,0 +1,43 @@
+<html>
+<script>
+//Question 4 Write a program to create a calculator with all arithmetic operations has functions;
+
+function sum(a, b) {
+    document.getElementById("output").innerHTML = (parseInt(a) + parseInt(b));
+}
+
+function sub(a, b) {
+    document.getElementById("output").innerHTML = (parseInt(a) - parseInt(b));
+}
+
+function mul(a, b) {
+    document.getElementById("output").innerHTML = (parseInt(a) * parseInt(b));
+}
+
+function div(a, b) {
+    document.getElementById("output").innerHTML = (parseInt(a) / parseInt(b));
+}
+
+</script>
+
+<body>
+
+<input type="text" placeholder="Operand A" id="inputA"/>
+
+<input type="text" placeholder="Operand B" id="inputB"/>
+<br>
+<br>
+
+Operation
+<button type="button" onclick='sum(document.getElementById("inputA").value, document.getElementById("inputB").value)'>+</button>
+<button type="button" onclick='sub(document.getElementById("inputA").value, document.getElementById("inputB").value)'>-</button>
+<button type="button" onclick='mul(document.getElementById("inputA").value, document.getElementById("inputB").value)'>x</button>
+<button type="button" onclick='div(document.getElementById("inputA").value, document.getElementById("inputB").value)'>/</button>
+<br>
+<br>
+<br>
+Output : <span id="output"></span>
+
+</body>
+
+</html>
