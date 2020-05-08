@@ -1,0 +1,188 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        var apiKey = "AX4oylpifBpdeSA3ZRsTjrTwwDuDdsTY";
+    //arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, t-magazine, travel, upshot, us, world
+    </script>
+    <style>
+        .borders{
+    		border: 0px solid black;
+    		width: 600px;
+    	}
+
+    	.newsCycle{
+    		font-family: 'News Cycle', sans-serif;
+    	}
+
+    	.btn{
+    		width:150px;
+    	}
+
+    	.width75{
+    		width:75%;
+    	}
+
+    	.imgSize{
+    		height:80px;
+    		width:80px;
+    	}
+    </style>
+</head>
+
+<body>
+	<hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#artsArticles" aria-expanded="false" aria-controls="artsArticles" onclick='beforeClick()'>
+                    Arts
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#automobilesArticles" aria-expanded="false" aria-controls="automobilesArticles" onclick='beforeClick()'>
+                    Automobiles
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#booksArticles" aria-expanded="false" aria-controls="booksArticles" onclick='beforeClick()'>
+                    Books
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#businessArticles" aria-expanded="false" aria-controls="businessArticles" onclick='beforeClick()'>
+                    Business
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#fashionArticles" aria-expanded="false" aria-controls="fashionArticles" onclick='beforeClick()'>
+                    Fashion
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#foodArticles" aria-expanded="false" aria-controls="foodArticles" onclick='beforeClick()'>
+                    Food
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div class="container">
+        <div id="artsArticles" class="row collapse show">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="automobilesArticles" class="row collapse">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="booksArticles" class="row collapse">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="businessArticles" class="row collapse">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="fashionArticles" class="row collapse">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="foodArticles" class="row collapse">
+        </div>
+    </div>
+
+</body>
+<script>
+function getStories(section) {
+
+    var url = "https://api.nytimes.com/svc/topstories/v2/" + section + ".json?api-key=" + apiKey;
+
+    fetch(url).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data);
+        addStories(section, data);
+    });
+}
+
+function addStories(section, json) {
+    var index = 0;
+
+    for (var i = 0; i < Math.floor(json.num_results / 3); i++) {
+        var row = document.createElement("div");
+        row.setAttribute("class", "row");
+
+        var c1 = document.createElement("div");
+        c1.setAttribute("class", "col-lg-4 borders newsCycle");
+        c1.innerHTML = "<table style='width:100%'><tr><td class='width75'><b>" + toTitleCase(json["results"][index]["section"]) +"</b></br><b>" +  json["results"][index]["title"] +"</b><p><i>" + convertDate(json["results"][index]["created_date"]) + "</i></td><td><img src=" + json["results"][index]["multimedia"][1]['url'] + " class='imgSize'></td></tr></table>" + json["results"][index]["abstract"] + "<br>" + "<a href='" + json["results"][index]["url"] + "' target='_blank'>Continue reading.</a><hr>";
+        row.appendChild(c1);
+
+        index++;
+
+        var C2 = document.createElement("div");
+        C2.setAttribute("class", "col-lg-4 borders newsCycle");
+        C2.innerHTML = "<table style='width:100%'><tr><td class='width75'><b>" + toTitleCase(json["results"][index]["section"]) +"</b></br><b>" +  json["results"][index]["title"] +"</b><p><i>" + convertDate(json["results"][index]["created_date"]) + "</i></td><td><img src=" + json["results"][index]["multimedia"][1]['url'] + " class='imgSize'></td></tr></table>" + json["results"][index]["abstract"] + "<br>" + "<a href='" + json["results"][index]["url"] + "' target='_blank'>Continue reading.</a><hr>";
+        row.appendChild(C2);
+        index++;
+
+        var C3 = document.createElement("div");
+        C3.setAttribute("class", "col-lg-4 borders newsCycle");
+        C3.innerHTML = "<table style='width:100%'><tr><td class='width75'><b>" + toTitleCase(json["results"][index]["section"]) +"</b></br><b>" +  json["results"][index]["title"] +"</b><p><i>" + convertDate(json["results"][index]["created_date"]) + "</i></td><td><img src=" + json["results"][index]["multimedia"][1]['url'] + " class='imgSize'></td></tr></table>" + json["results"][index]["abstract"] + "<br>" + "<a href='" + json["results"][index]["url"] + "' target='_blank'>Continue reading.</a><hr>";
+        row.appendChild(C3);
+        index++;
+
+        document.getElementById(section + "Articles").appendChild(row);
+        console.log("appending to " + section + "Articles");
+    }
+
+}
+
+function toTitleCase(str) {
+    return str.replace(
+        /\w\S*/g,
+        function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    );
+}
+
+function convertDate(data){
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var date = new Date(data);
+	return months[date.getMonth()] + " " + date.getDate();
+}
+
+function beforeClick(){
+	collapseAll();
+}
+
+function collapseAll(){
+	$('.collapse').collapse("hide");
+}
+
+getStories("arts");
+getStories("automobiles");
+getStories("books");
+getStories("business");
+getStories("fashion");
+getStories("food");
+
+
+</script>
+
+</html>
