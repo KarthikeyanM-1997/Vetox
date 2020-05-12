@@ -1,0 +1,59 @@
+<html>
+
+<script>
+	const inputval = "#exmple || @name && user_email"
+
+	//var inputval = "apple"
+
+	const outputval = [
+	  {
+	    type: 'intent',
+	    value: 'exmple'
+	  },
+	  {
+	    type: 'operator',
+	    value: 'OR'
+	  },
+	  {
+	    type: 'entity',
+	    value: 'name'
+	  },
+	  {
+	    type: 'operator',
+	    value: 'AND'
+	  },
+	  {
+	    type: 'variable',
+	    value: 'user_email'
+	  }
+	]
+
+	function convertSymbols(input){
+		var ar = input.split(" ");
+		var output = [];
+		for(var i = 0; i < ar.length; i++){
+
+			if(ar[i][0] === '#'){
+				output.push({type : 'intent', value : ar[i].substring(1, ar[i].length) });
+			}
+			else if(ar[i][0] === '|' && ar[i][1] === '|'){
+				output.push({type : 'operator', value : 'OR'});
+			}
+			else if(ar[i][0] === '&' && ar[i][1] === '&'){
+				output.push({type : 'operator', value : 'AND'});
+			}
+			else if(ar[i][0] === '@'){
+				output.push({type : 'entity', value : ar[i].substring(1, ar[i].length) });
+			}
+			else{
+				output.push({type : 'variable', value : ar[i] });	
+			}
+		}
+		return output;
+	}
+
+	console.log(convertSymbols(inputval));
+	
+</script>
+
+</html>
