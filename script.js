@@ -9,7 +9,7 @@ var Song = /** @class */ (function () {
 }());
 var songList = [];
 songList.push(new Song("Alan Walker", "Faded", "Different World", "Faded.mp3"));
-songList.push(new Song("Ram", "Life Of Ram", "96", "Life_Of_Ram.mp3"));
+songList.push(new Song("Govind Vasantha", "Life Of Ram", "96", "Life_Of_Ram.mp3"));
 function playSong(index) {
     var audioElement = document.getElementById("audioPlayer");
     document.getElementById("audioSource").setAttribute("src", songList[index].songURL);
