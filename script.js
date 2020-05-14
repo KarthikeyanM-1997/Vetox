@@ -40,3 +40,4 @@ function addNewSong() {
     addSong(new Song(artist, name, album, url));
     addSongsToList();
 }
+console.log("https://distracted-mestorf-b28d34.netlify.app/Ad%20Break.mp3");

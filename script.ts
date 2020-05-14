@@ -61,3 +61,5 @@ function addNewSong(){
 
     addSongsToList();
 }
+
+console.log("https://distracted-mestorf-b28d34.netlify.app/Ad%20Break.mp3");
