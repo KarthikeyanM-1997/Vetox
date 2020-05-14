@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <h3>Songs</h3>
+            <br>
+            <div id='songList'>
+            
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3>Player</h3>
+            <br>
+            <audio controls id="audioPlayer">
+              <source src="" type="audio/mp3" id='audioSource'>
+            </audio>
+            <div id='songDetails'>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3>Add Song</h3>
+            Song Name : <input id='newSongName'/>
+            <br>
+            Artist : <input id='newSongArtist'/>
+            <br>
+            Album : <input id='newSongAlbum'/>
+            <br>
+            URL : <input id='newSongURL'/>
+            <br>
+            <button onclick='addNewSong();'>Add Song</button>
+          </div>
+        </div>
+      </div>
+
+</body>
+<script src="script.js"></script>
+</html>
