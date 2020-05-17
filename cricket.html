@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        .align-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: separate;
+        }
+    </style>
+
+</head>
+
+<body>
+    <center>
+        <h3>Cricket Match</h3>
+    </center>
+
+    <div id='matchDiv'>
+        <div class='container'>
+            <div class='row mb-5'>
+                <div class='col-sm-12 text-center'>
+                    Click Start to start the Match. Click on hit to hit the ball. Player 1 goes first. Each team has 10
+                    players and 60 seconds to play their turn.
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-5 text-center' id='playerOne'>
+                    Player One
+                </div>
+                <div class='col-lg-2 text-center'><button id='startMatch' onclick="startMatch()" class='btn btn-primary'>Team One Start Batting</button><br>Timer
+                    <div id='timer'>60</div><br><button id="hitBtn" onclick='hit()' disabled='true' class='btn btn-primary disabled'>Hit</button>
+                    <br>
+                    <div id='textDiv'></div>
+                </div>
+                <div class='col-lg-5 text-center' id='playerTwo'>
+                    Player Two
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-5'>
+                    <div id='oneText'></div>
+                </div>
+                <div class='col-lg-2'>
+                </div>
+                <div class='col-lg-5'>
+                    <div id='twoText'></div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-5'>
+                    Runs : <div id='OneTotalText'>0</div>
+                </div>
+                <div class='col-lg-2'>
+                    <button id="resBtn" onclick='generateResults()' disabled='true' class='btn btn-primary disabled'>generateResults</button>
+                </div>
+                <div class='col-lg-5'>
+                    Runs : <div id='TwoTotalText'>0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src='cricket.js'></script>
+
+
+</html>
